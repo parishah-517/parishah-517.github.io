@@ -405,8 +405,27 @@ p {
   gap: 14px;
 }
 
-.primary-link {
+/* Match Explore Projects (button) to LinkedIn / GitHub (links) */
+.hero-below .hero-actions a,
+.hero-below .hero-actions button {
+  font: inherit;
   font-weight: 600;
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+  color: #111111;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.hero-below .hero-actions a:hover,
+.hero-below .hero-actions button:hover {
+  opacity: 0.7;
 }
 
 .section {

@@ -198,7 +198,7 @@ export default function App() {
                   in-person experiences.
                 </p>
                 <div className="hero-actions">
-                  <button className="nav-button primary-link" type="button" onClick={() => scrollToSection("projects")}>
+                  <button className="nav-button" type="button" onClick={() => scrollToSection("projects")}>
                     Explore Projects
                   </button>
                   <a href="https://www.linkedin.com/in/pari-shah-41a888200/" target="_blank" rel="noopener noreferrer">
