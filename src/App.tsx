@@ -52,11 +52,13 @@ export default function App() {
                 alt="Illustrated portrait of Pari Shah"
               />
             </div>
-            <div>
+            <div className="hero-headline-block">
               <p className="eyebrow">Software Engineer + Product Designer</p>
               <h1>
                 Building thoughtful digital and in-person experiences.
               </h1>
+            </div>
+            <div className="hero-below">
               <p className="lead">
                 I&apos;m Pari Shah, a New York-based software engineer and product
                 designer focused on creating impactful, user-centered
@@ -115,7 +117,6 @@ export default function App() {
               intersection of software engineering, product strategy, and user
               experience.
             </p>
-            
           </div>
 
           <div className="skill-block">
