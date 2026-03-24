@@ -225,7 +225,6 @@ export default function App() {
                 <h3>{project.title}</h3>
                 <p>{project.summary}</p>
                 {project.dates && <p className="meta project-dates">{project.dates}</p>}
-                <p className="meta">{project.context}</p>
                 <p className="meta">{project.tools}</p>
                 {project.links && (
                   <div className="inline-links">
