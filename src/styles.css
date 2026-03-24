@@ -71,34 +71,28 @@ a:hover {
   padding: 72px 0 36px;
 }
 
-/* One text column (flex) beside the image so the headline + bio stack with no grid row gap.
-   (Previously headline and bio were separate grid rows while the image spanned both rows,
-   which stretched row 1 and left a large gap under the title.) */
-.hero-grid {
-  display: grid;
-  grid-template-columns: minmax(180px, 320px) 1.3fr;
-  grid-template-rows: auto;
-  column-gap: 28px;
-  align-items: start;
+/* Sketch + text share one row; flex cross-axis centers them as a pair in this container. */
+.hero-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 28px;
+  width: 100%;
 }
 
 .hero-image-wrap {
-  grid-column: 1;
-  grid-row: 1;
-  align-self: start;
+  flex: 0 0 auto;
   display: flex;
   justify-content: flex-start;
+  max-width: min(320px, 100%);
 }
 
 .hero-content {
-  grid-column: 2;
-  grid-row: 1;
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 1.875rem;
-  min-width: 0;
-  /* Nudge text down so the eyebrow / title align with the sketch more naturally */
-  padding-top: clamp(0.5rem, 1.5vw, 1.25rem);
 }
 
 .hero-headline-block {
@@ -263,9 +257,8 @@ p {
     padding: 0 20px 56px;
   }
 
-  .hero-grid {
-    grid-template-columns: minmax(160px, 260px) 1fr;
-    column-gap: 20px;
+  .hero-layout {
+    gap: 20px;
   }
 
   .hero-image {
@@ -294,12 +287,14 @@ p {
     position: static;
   }
 
-  .hero-grid {
+  /* Narrow screens: grid so row 1 = sketch | headline, row 2 = full-width bio */
+  .hero-layout {
+    display: grid;
     grid-template-columns: minmax(100px, 160px) minmax(0, 1fr);
     grid-template-rows: auto auto;
     column-gap: 14px;
     row-gap: 1.5rem;
-    align-items: start;
+    align-items: center;
   }
 
   .hero-content {
@@ -307,14 +302,17 @@ p {
   }
 
   .hero-image-wrap {
+    grid-column: 1;
     grid-row: 1;
-    align-self: start;
+    align-self: center;
+    max-width: none;
   }
 
   .hero-headline-block {
     grid-column: 2;
     grid-row: 1;
-    padding-top: clamp(1.35rem, 4.5vw, 2.5rem);
+    align-self: center;
+    padding-top: 0;
   }
 
   .hero-below {
@@ -369,11 +367,16 @@ p {
     font-size: 1rem;
   }
 
-  .hero-grid {
+  .hero-layout {
     grid-template-columns: minmax(88px, 120px) minmax(0, 1fr);
     grid-template-rows: auto auto;
     column-gap: 12px;
     row-gap: 1.5rem;
+    align-items: center;
+  }
+
+  .hero-headline-block {
+    padding-top: 0;
   }
 
   .hero-image {

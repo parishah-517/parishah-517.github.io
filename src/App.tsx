@@ -44,7 +44,7 @@ export default function App() {
 
       <main>
         <section id="home" className="hero">
-          <div className="hero-grid">
+          <div className="hero-layout">
             <div className="hero-image-wrap">
               <img
                 className="hero-image"
