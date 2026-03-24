@@ -1,0 +1,56 @@
+export type Project = {
+  title: string;
+  summary: string;
+  context: string;
+  tools: string;
+  links?: { label: string; href: string }[];
+};
+
+export const projects: Project[] = [
+  {
+    title: "Milna Market",
+    summary:
+      "Founded and organized one of NYC's largest South Asian pop-up markets, leading design across social media and web. Now building an online vendor portal focused on a streamlined vendor experience, reducing friction from application to event-day and increasing repeat participation.",
+    context: "Founder + Product Design + Social Media + Software Development",
+    tools: "Figma, React, TypeScript, Tailwind CSS, Node.js, Supabase, Cursor, Notion",
+    links: [
+      { label: "Website", href: "https://milna.market" },
+      { label: "Instagram", href: "https://instagram.com/milna.market" },
+      { label: "TikTok", href: "https://tiktok.com/@milna.market" }
+    ]
+  },
+  {
+    title: "Sincere Farm Mobile App Prototype",
+    summary:
+      "Built and shared a Figma prototype of a mobile app for an early-stage consumer nut butter brand, transforming an early idea into an intuitive social shopping experience while keeping the visual language consistent with the Shopify website.",
+    context: "Product Design + Prototyping",
+    tools: "Figma, Shopify",
+    links: [
+      {
+        label: "View Figma Prototype",
+        href: "https://www.figma.com/proto/lzBRHbnC5iInozrF4Da8Z6/SF?node-id=212-1303&starting-point-node-id=27%3A78&t=In5M4FFPbPBRk8x1-1"
+      },
+      { label: "Brand Website", href: "http://sincerefarm.com/" },
+      { label: "Brand Instagram", href: "https://www.instagram.com/sincere_farm/" }
+    ]
+  },
+  {
+    title: "RETRO: Robotic Cloud System",
+    summary:
+      "Designed a proof-of-concept for a reliable cloud robotics system that blends individual robot capabilities with coordinated communication over WebSockets and OpenCV, enabling remote experiment control.",
+    context: "Research Project",
+    tools: "Python, OpenCV, WebSockets",
+    links: [
+      { label: "Watch Video", href: "https://youtu.be/_XKjZ5PoYlU" },
+      { label: "View Poster", href: "./pdfs/gsuposter.pdf" }
+    ]
+  },
+  {
+    title: "Eye-Tracking Analysis",
+    summary:
+      "Analyzed Tobii eye-tracker data to study cognitive load in programming-focused learning experiences.",
+    context: "Research Assistant",
+    tools: "Python, Data Analysis",
+    links: [{ label: "View Poster", href: "./pdfs/urop.pdf" }]
+  },
+];
