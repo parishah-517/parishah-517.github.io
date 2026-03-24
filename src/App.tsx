@@ -52,28 +52,30 @@ export default function App() {
                 alt="Illustrated portrait of Pari Shah"
               />
             </div>
-            <div className="hero-headline-block">
-              <p className="eyebrow">Software Engineer + Product Designer</p>
-              <h1>
-                Building thoughtful digital and in-person experiences.
-              </h1>
-            </div>
-            <div className="hero-below">
-              <p className="lead">
-                I&apos;m Pari Shah, a New York-based software engineer and product
-                designer focused on creating impactful, user-centered
-                experiences across digital products and in-person communities.
-              </p>
-              <div className="hero-actions">
-                <button className="nav-button primary-link" type="button" onClick={() => scrollToSection("projects")}>
-                  Explore Projects
-                </button>
-                <a href="https://www.linkedin.com/in/pari-shah-41a888200/" target="_blank" rel="noopener noreferrer">
-                  LinkedIn
-                </a>
-                <a href="https://github.com/parishah-517" target="_blank" rel="noopener noreferrer">
-                  GitHub
-                </a>
+            <div className="hero-content">
+              <div className="hero-headline-block">
+                <p className="eyebrow">Software Engineer + Product Designer</p>
+                <h1>
+                  Building thoughtful digital and in-person experiences.
+                </h1>
+              </div>
+              <div className="hero-below">
+                <p className="lead">
+                  I&apos;m Pari Shah, a New York-based software engineer and product
+                  designer focused on creating impactful, user-centered
+                  experiences across digital products and in-person communities.
+                </p>
+                <div className="hero-actions">
+                  <button className="nav-button primary-link" type="button" onClick={() => scrollToSection("projects")}>
+                    Explore Projects
+                  </button>
+                  <a href="https://www.linkedin.com/in/pari-shah-41a888200/" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                  </a>
+                  <a href="https://github.com/parishah-517" target="_blank" rel="noopener noreferrer">
+                    GitHub
+                  </a>
+                </div>
               </div>
             </div>
           </div>
