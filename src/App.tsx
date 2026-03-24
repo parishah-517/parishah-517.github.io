@@ -36,7 +36,7 @@ export default function App() {
           <button className="nav-button" type="button" onClick={() => scrollToSection("contact")}>
             Contact
           </button>
-          <a href="./pdfs/Pari%20Shah%20Resume%202026.pdf" target="_blank" rel="noreferrer">
+          <a href="/pdfs/Pari_Shah_Resume_2026.pdf" target="_blank" rel="noopener noreferrer">
             Resume
           </a>
         </nav>
@@ -55,12 +55,12 @@ export default function App() {
             <div>
               <p className="eyebrow">Software Engineer + Product Designer</p>
               <h1>
-                Building thoughtful digital and real-world experiences.
+                Building thoughtful digital and in-person experiences.
               </h1>
               <p className="lead">
                 I&apos;m Pari Shah, a New York-based software engineer and product
                 designer focused on creating impactful, user-centered
-                experiences across digital products and real-world communities.
+                experiences across digital products and in-person communities.
               </p>
               <div className="hero-actions">
                 <button className="nav-button primary-link" type="button" onClick={() => scrollToSection("projects")}>
@@ -88,6 +88,7 @@ export default function App() {
               <article className="project-card" key={project.title}>
                 <h3>{project.title}</h3>
                 <p>{project.summary}</p>
+                {project.dates && <p className="meta project-dates">{project.dates}</p>}
                 <p className="meta">{project.context}</p>
                 <p className="meta">{project.tools}</p>
                 {project.links && (
