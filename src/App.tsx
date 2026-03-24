@@ -193,7 +193,7 @@ export default function App() {
               </div>
               <div className="hero-below">
                 <p className="lead">
-                  I&apos;m a New York-based software engineer and product designer
+                  New York-based software engineer and product designer
                   focused on creating thoughtful, user-centered digital and
                   in-person experiences.
                 </p>
