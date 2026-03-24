@@ -59,11 +59,25 @@ a:hover {
   padding-bottom: 18px;
 }
 
+/* Same control size as .nav-toggle: 40×40 with 8px inset (24px glyph area) */
 .brand {
+  box-sizing: border-box;
   flex-shrink: 0;
-  font-size: 1.1rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  margin: 0;
+  border-radius: 8px;
+}
+
+.brand-home-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  display: block;
 }
 
 .nav {
@@ -137,11 +151,14 @@ a:hover {
 }
 
 .nav-toggle {
+  box-sizing: border-box;
   display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 6px;
+  width: 40px;
+  height: 40px;
   margin: 0 0 0 auto;
   padding: 8px;
   border: 0;
@@ -149,6 +166,7 @@ a:hover {
   cursor: pointer;
   color: #111111;
   flex-shrink: 0;
+  border-radius: 8px;
 }
 
 /* Milna-style bars: w-6 (24px) × h-0.5 (2px), gap-1.5 (6px) → X when open */
@@ -551,17 +569,17 @@ p {
   }
 
   .hero-headline-block h1 {
-    font-size: clamp(1.45rem, 3.5vw + 0.4rem, 1.95rem);
-    line-height: 1.1;
+    font-size: clamp(1.85rem, 4vw + 0.85rem, 2.4rem);
+    line-height: 1.08;
   }
 
   .hero .eyebrow {
-    font-size: 0.74rem;
+    font-size: 0.8rem;
   }
 
   .hero-below .lead {
-    font-size: 0.97rem;
-    line-height: 1.42;
+    font-size: 1.02rem;
+    line-height: 1.48;
   }
 }
 
@@ -588,7 +606,7 @@ p {
     grid-template-columns: minmax(88px, 120px) minmax(0, 1fr);
     grid-template-rows: auto auto;
     column-gap: 12px;
-    row-gap: 1.5rem;
+    row-gap: 1.2rem;
     align-items: center;
   }
 
@@ -601,20 +619,22 @@ p {
 
   .hero-headline-block {
     padding-top: 0;
+    gap: 0.65rem;
   }
 
   .hero-headline-block h1 {
-    font-size: clamp(1.25rem, 5vw, 1.75rem);
-    line-height: 1.12;
+    font-size: clamp(1.95rem, 8.5vw + 0.5rem, 2.6rem);
+    line-height: 1.06;
   }
 
   .hero .eyebrow {
-    font-size: 0.68rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.09em;
   }
 
   .hero-below .lead {
-    font-size: 0.9rem;
-    line-height: 1.45;
+    font-size: 1.05rem;
+    line-height: 1.5;
   }
 
   .hero-image {

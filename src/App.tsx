@@ -129,9 +129,23 @@ export default function App() {
             className={`brand nav-button${activeSection === "home" ? " nav-button--active" : ""}`}
             type="button"
             onClick={() => goToSection("home")}
+            aria-label="Home"
             aria-current={activeSection === "home" ? "page" : undefined}
           >
-            Pari Shah
+            <svg
+              className="brand-home-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden={true}
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
           </button>
           <button
             type="button"
@@ -174,16 +188,14 @@ export default function App() {
             </div>
             <div className="hero-content">
               <div className="hero-headline-block">
+                <h1>Pari Shah</h1>
                 <p className="eyebrow">Software Engineer + Product Designer</p>
-                <h1>
-                  Building thoughtful digital and in-person experiences.
-                </h1>
               </div>
               <div className="hero-below">
                 <p className="lead">
-                  I&apos;m Pari Shah, a New York-based software engineer and product
-                  designer focused on creating impactful, user-centered
-                  experiences across digital products and in-person communities.
+                  I&apos;m a New York-based software engineer and product designer
+                  focused on creating thoughtful, user-centered digital and
+                  in-person experiences.
                 </p>
                 <div className="hero-actions">
                   <button className="nav-button primary-link" type="button" onClick={() => scrollToSection("projects")}>
