@@ -301,10 +301,14 @@ p {
     display: contents;
   }
 
+  /* Stretch the sketch column to the full height of row 1 (taller headline), then center the img inside */
   .hero-image-wrap {
     grid-column: 1;
     grid-row: 1;
-    align-self: center;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     max-width: none;
   }
 
@@ -341,6 +345,20 @@ p {
     margin-top: 14px;
     gap: 10px;
   }
+
+  .hero-headline-block h1 {
+    font-size: clamp(1.45rem, 3.5vw + 0.4rem, 1.95rem);
+    line-height: 1.1;
+  }
+
+  .hero .eyebrow {
+    font-size: 0.74rem;
+  }
+
+  .hero-below .lead {
+    font-size: 0.97rem;
+    line-height: 1.42;
+  }
 }
 
 @media (max-width: 520px) {
@@ -375,8 +393,29 @@ p {
     align-items: center;
   }
 
+  .hero-image-wrap {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
   .hero-headline-block {
     padding-top: 0;
+  }
+
+  .hero-headline-block h1 {
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
+    line-height: 1.12;
+  }
+
+  .hero .eyebrow {
+    font-size: 0.68rem;
+  }
+
+  .hero-below .lead {
+    font-size: 0.9rem;
+    line-height: 1.45;
   }
 
   .hero-image {
