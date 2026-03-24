@@ -34,17 +34,33 @@ a:hover {
 .topbar {
   position: sticky;
   top: 0;
+  /* Same on mobile + desktop — keeps nav reachable while scrolling long pages */
+  padding-top: max(18px, env(safe-area-inset-top));
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid #ececec;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  z-index: 20;
+}
+
+.topbar-row {
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  padding: 18px 0;
-  z-index: 10;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding-bottom: 18px;
 }
 
 .brand {
+  flex-shrink: 0;
   font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -53,9 +69,37 @@ a:hover {
 .nav {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
+  justify-content: flex-end;
+  flex: 1 1 0;
+  min-width: 0;
+  flex-wrap: nowrap;
+  gap: 14px;
   font-size: 0.95rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.nav::-webkit-scrollbar {
+  display: none;
+}
+
+.nav > .nav-button,
+.nav > .nav-link {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.nav-link {
+  color: #111111;
+  font: inherit;
+  font-size: inherit;
+  opacity: 0.72;
+}
+
+.nav-link:hover {
+  opacity: 1;
 }
 
 .nav-button {
@@ -65,6 +109,173 @@ a:hover {
   font: inherit;
   padding: 0;
   cursor: pointer;
+}
+
+.nav-button--active {
+  font-weight: 600;
+}
+
+/* Scroll-spy: current section — only in-page nav, not Resume */
+.nav .nav-button:not(.nav-button--active) {
+  opacity: 0.72;
+}
+
+.nav .nav-button.nav-button--active {
+  opacity: 1;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 0 0 0 auto;
+  padding: 8px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: #111111;
+  flex-shrink: 0;
+}
+
+/* Milna-style bars: w-6 (24px) × h-0.5 (2px), gap-1.5 (6px) → X when open */
+.nav-toggle-bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: currentColor;
+  transform-origin: center;
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s ease;
+}
+
+.nav-toggle--open .nav-toggle-bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.nav-toggle--open .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle--open .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Desktop: horizontal nav in header row */
+.nav-desktop-wrap {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.nav-mobile-dropdown {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .nav-mobile-dropdown {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-desktop-wrap {
+    display: none !important;
+  }
+
+  /* Milna-style: panel opens downward (max-height + opacity), not full-screen */
+  .nav-mobile-dropdown {
+    display: block;
+    width: 100%;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition:
+      max-height 0.3s ease,
+      opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .nav-mobile-dropdown--open {
+    max-height: 22rem;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav.nav--mobile-dropdown {
+    flex: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin: 0;
+    padding: 0 0 1rem;
+    min-width: 0;
+    font-size: 0.875rem;
+    font-weight: 400;
+    overflow: visible;
+    letter-spacing: normal;
+  }
+
+  .nav--mobile-dropdown > .nav-button,
+  .nav--mobile-dropdown > .nav-link {
+    flex-shrink: 0;
+    padding: 0.5rem 0;
+    width: auto;
+    max-width: 100%;
+    text-align: left;
+    white-space: normal;
+  }
+
+  .nav--mobile-dropdown .nav-button:not(.nav-button--active) {
+    opacity: 1;
+  }
+
+  .nav--mobile-dropdown .nav-button--active {
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .nav--mobile-dropdown .nav-link {
+    opacity: 1;
+  }
+
+  .nav--mobile-dropdown .nav-button:hover,
+  .nav--mobile-dropdown .nav-link:hover {
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  .nav-mobile-dropdown {
+    transition: none;
+  }
+
+  .nav-toggle-bar {
+    transition-duration: 0.01ms;
+  }
 }
 
 .hero {
@@ -280,13 +491,6 @@ p {
     grid-template-columns: 1fr;
   }
 
-  .topbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    position: static;
-  }
-
   /* Narrow screens: grid so row 1 = sketch | headline, row 2 = full-width bio */
   .hero-layout {
     display: grid;
@@ -364,11 +568,6 @@ p {
 @media (max-width: 520px) {
   .site {
     padding: 0 14px 40px;
-  }
-
-  .nav {
-    gap: 10px 14px;
-    font-size: 0.9rem;
   }
 
   .eyebrow {

@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
 import { projects } from "./data";
+
+const navSections = ["home", "projects", "about", "contact"] as const;
 
 const skills = [
   "TypeScript",
@@ -15,31 +18,148 @@ const skills = [
   "Machine Learning"
 ];
 
+const MOBILE_NAV_MAX = 767;
+
 export default function App() {
+  const [activeSection, setActiveSection] = useState<string>("home");
+  const [navOpen, setNavOpen] = useState(false);
+
   const scrollToSection = (sectionId: string) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    const el = document.getElementById(sectionId);
+    if (!el) return;
+    const topbar = document.querySelector(".topbar");
+    const offset = (topbar?.getBoundingClientRect().height ?? 64) + 8;
+    const top = window.scrollY + el.getBoundingClientRect().top - offset;
+    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
   };
+
+  const goToSection = (sectionId: string) => {
+    scrollToSection(sectionId);
+    setNavOpen(false);
+  };
+
+  useEffect(() => {
+    if (!navOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setNavOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [navOpen]);
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth > MOBILE_NAV_MAX) setNavOpen(false);
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  useEffect(() => {
+    const updateActiveFromScroll = () => {
+      const topbar = document.querySelector(".topbar");
+      const offset = (topbar?.getBoundingClientRect().height ?? 64) + 8;
+      const scrollLine = window.scrollY + offset;
+
+      for (let i = navSections.length - 1; i >= 0; i--) {
+        const id = navSections[i];
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const sectionTop = el.getBoundingClientRect().top + window.scrollY;
+        if (sectionTop <= scrollLine) {
+          setActiveSection(id);
+          return;
+        }
+      }
+      setActiveSection("home");
+    };
+
+    updateActiveFromScroll();
+    window.addEventListener("scroll", updateActiveFromScroll, { passive: true });
+    window.addEventListener("resize", updateActiveFromScroll);
+    return () => {
+      window.removeEventListener("scroll", updateActiveFromScroll);
+      window.removeEventListener("resize", updateActiveFromScroll);
+    };
+  }, []);
+
+  const primaryNavLinks = (
+    <>
+      <button
+        className={`nav-button${activeSection === "projects" ? " nav-button--active" : ""}`}
+        type="button"
+        onClick={() => goToSection("projects")}
+        aria-current={activeSection === "projects" ? "page" : undefined}
+      >
+        Projects
+      </button>
+      <button
+        className={`nav-button${activeSection === "about" ? " nav-button--active" : ""}`}
+        type="button"
+        onClick={() => goToSection("about")}
+        aria-current={activeSection === "about" ? "page" : undefined}
+      >
+        About
+      </button>
+      <button
+        className={`nav-button${activeSection === "contact" ? " nav-button--active" : ""}`}
+        type="button"
+        onClick={() => goToSection("contact")}
+        aria-current={activeSection === "contact" ? "page" : undefined}
+      >
+        Contact
+      </button>
+      <a
+        className="nav-link"
+        href="/pdfs/Pari_Shah_Resume_2026.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={() => setNavOpen(false)}
+      >
+        Resume
+      </a>
+    </>
+  );
 
   return (
     <div className="site">
       <header className="topbar">
-        <button className="brand nav-button" type="button" onClick={() => scrollToSection("home")}>
-          Pari Shah
-        </button>
-        <nav className="nav">
-          <button className="nav-button" type="button" onClick={() => scrollToSection("projects")}>
-            Projects
+        <div className="topbar-row">
+          <button
+            className={`brand nav-button${activeSection === "home" ? " nav-button--active" : ""}`}
+            type="button"
+            onClick={() => goToSection("home")}
+            aria-current={activeSection === "home" ? "page" : undefined}
+          >
+            Pari Shah
           </button>
-          <button className="nav-button" type="button" onClick={() => scrollToSection("about")}>
-            About
+          <button
+            type="button"
+            className={`nav-toggle${navOpen ? " nav-toggle--open" : ""}`}
+            aria-expanded={navOpen}
+            aria-controls="mobile-nav-panel"
+            onClick={() => setNavOpen((o) => !o)}
+          >
+            <span className="nav-toggle-bar" aria-hidden />
+            <span className="nav-toggle-bar" aria-hidden />
+            <span className="nav-toggle-bar" aria-hidden />
+            <span className="visually-hidden">Toggle menu</span>
           </button>
-          <button className="nav-button" type="button" onClick={() => scrollToSection("contact")}>
-            Contact
-          </button>
-          <a href="/pdfs/Pari_Shah_Resume_2026.pdf" target="_blank" rel="noopener noreferrer">
-            Resume
-          </a>
-        </nav>
+          <div className="nav-desktop-wrap">
+            <nav id="primary-nav" className="nav" aria-label="Primary">
+              {primaryNavLinks}
+            </nav>
+          </div>
+        </div>
+        <div
+          id="mobile-nav-panel"
+          className={`nav-mobile-dropdown${navOpen ? " nav-mobile-dropdown--open" : ""}`}
+          aria-hidden={!navOpen}
+        >
+          <nav className="nav nav--mobile-dropdown" aria-label="Primary">
+            {primaryNavLinks}
+          </nav>
+        </div>
       </header>
 
       <main>
