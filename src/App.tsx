@@ -57,6 +57,16 @@ export default function App() {
 
   useEffect(() => {
     const updateActiveFromScroll = () => {
+      const docEl = document.documentElement;
+      const canScroll = docEl.scrollHeight > docEl.clientHeight + 1;
+      if (canScroll) {
+        const scrollBottom = window.scrollY + window.innerHeight;
+        if (scrollBottom >= docEl.scrollHeight - 2) {
+          setActiveSection(navSections[navSections.length - 1]);
+          return;
+        }
+      }
+
       const topbar = document.querySelector(".topbar");
       const offset = (topbar?.getBoundingClientRect().height ?? 64) + 8;
       const scrollLine = window.scrollY + offset;
