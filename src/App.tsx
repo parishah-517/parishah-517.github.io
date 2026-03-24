@@ -189,11 +189,11 @@ export default function App() {
             <div className="hero-content">
               <div className="hero-headline-block">
                 <h1>Pari Shah</h1>
-                <p className="eyebrow">Software Engineer + Product Designer</p>
+                <p className="eyebrow">Software Engineer + UX/UI Designer</p>
               </div>
               <div className="hero-below">
                 <p className="lead">
-                  New York-based software engineer and product designer
+                  New York-based software engineer and UX/UI designer
                   focused on creating thoughtful, user-centered digital and
                   in-person experiences.
                 </p>
@@ -248,8 +248,8 @@ export default function App() {
             <p>
               I graduated from the University of Michigan with a B.S.
               in Computer Science and Cognitive Science. I enjoy working at the
-              intersection of software engineering, product strategy, and user
-              experience.
+              intersection of software engineering, product strategy, and
+              UX/UI design.
             </p>
           </div>
 
