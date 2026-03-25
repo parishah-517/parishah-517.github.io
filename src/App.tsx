@@ -203,7 +203,7 @@ export default function App() {
               </div>
               <div className="hero-below">
                 <p className="lead">
-                  New York-based software engineer and UX/UI designer
+                  Software engineer and UX/UI designer based in the NYC metro area,
                   focused on creating thoughtful, user-centered digital and
                   in-person experiences.
                 </p>
