@@ -164,7 +164,7 @@ export const projects: Project[] = [
       description:
         "Built a Figma proof-of-concept mobile app that explored a social-forward shopping experience through an Instagram-style community feed and a rewards system designed to encourage repeat purchases and brand engagement. Also created social media content and researched Shopify loyalty tools, including Smile, to evaluate how these features could integrate with Sincere Farm's existing Shopify site.",
       video: {
-        src: "/videos/sincere-farm-app.mov",
+        src: "/videos/sincere-farm-app.mp4",
         alt: "Screen recording of the Sincere Farm mobile app prototype",
         poster: "/images/projects/sincere-farm-app-screen.png"
       }
