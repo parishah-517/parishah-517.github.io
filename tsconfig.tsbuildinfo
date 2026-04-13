@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/data.ts","./src/main.tsx"],"version":"5.9.3"}
+{"root":["./src/app.tsx","./src/layout.tsx","./src/data.ts","./src/main.tsx","./src/projectimagestyle.ts","./src/scroll.ts","./src/components/connectsection.tsx","./src/components/detailcarousel.tsx","./src/components/projectcard.tsx","./src/pages/home.tsx","./src/pages/projectdetail.tsx"],"version":"5.9.3"}
