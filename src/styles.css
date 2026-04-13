@@ -26,7 +26,7 @@ a:hover {
 }
 
 .site {
-  max-width: 1100px;
+  max-width: 1240px;
   margin: 0 auto;
   padding: 0 24px 64px;
 }
@@ -453,6 +453,575 @@ p {
   gap: 10px;
 }
 
+.project-card--media {
+  padding: 0;
+  overflow: hidden;
+}
+
+.project-card-link {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.project-card-link:focus-visible {
+  outline: 2px solid #111111;
+  outline-offset: 2px;
+}
+
+.project-card-visual {
+  aspect-ratio: 16 / 10;
+  background: #1a1a1a;
+  overflow: hidden;
+}
+
+.project-card-visual--contain {
+  background: #f0f0f0;
+}
+
+.project-card-image,
+.project-card-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1);
+  transform-origin: center center;
+  transition: transform 0.42s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.project-card-link:hover .project-card-image,
+.project-card-link:hover .project-card-video {
+  transform: scale(1.045);
+}
+
+.project-card-link:focus-visible .project-card-image,
+.project-card-link:focus-visible .project-card-video {
+  transform: scale(1.045);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card-image,
+  .project-card-video {
+    transition: none;
+  }
+
+  .project-card-link:hover .project-card-image,
+  .project-card-link:hover .project-card-video,
+  .project-card-link:focus-visible .project-card-image,
+  .project-card-link:focus-visible .project-card-video {
+    transform: none;
+  }
+}
+
+.project-card-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 18px 18px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    transparent 100%
+  );
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.project-card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.project-card-cta {
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.92;
+}
+
+.project-card-link:hover .project-card-cta {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.main--project-detail {
+  padding-top: 8px;
+}
+
+.project-detail {
+  padding-bottom: 0;
+}
+
+.project-detail-connect {
+  margin-top: 40px;
+}
+
+.project-detail-back {
+  margin: 0 0 20px;
+  font-size: 0.95rem;
+}
+
+.project-detail-back a {
+  color: #111111;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.project-detail-back a:hover {
+  opacity: 0.7;
+}
+
+.project-detail-header {
+  margin-bottom: 24px;
+}
+
+.project-detail-header h1 {
+  margin-top: 8px;
+}
+
+.project-detail-intro {
+  margin-bottom: 28px;
+}
+
+/* Video left; description right — centered as a block on wide screens */
+.project-detail-meta-app-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  column-gap: clamp(16px, 2.5vw, 28px);
+  row-gap: 0;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 28px;
+}
+
+.project-detail-meta-app-row-left {
+  min-width: 0;
+}
+
+.project-detail-app-copy {
+  max-width: none;
+}
+
+.project-detail-tools-block + .project-detail-app-heading-intro,
+.project-detail-links-block + .project-detail-app-heading-intro {
+  margin-top: 14px;
+}
+
+.project-detail-meta-app-row-media {
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+@media (min-width: 961px) {
+  .project-detail-meta-app-row {
+    max-width: min(920px, 100%);
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 960px) {
+  .project-detail-meta-app-row {
+    grid-template-columns: 1fr;
+    max-width: none;
+    margin-inline: 0;
+    column-gap: 0;
+    row-gap: 18px;
+    align-items: stretch;
+  }
+
+  .project-detail-meta-app-row-media {
+    justify-content: center;
+  }
+
+  .project-detail-meta-app-row-media .project-detail-app-video-frame {
+    margin-inline-end: 0;
+  }
+}
+
+.project-detail-app-video-desc {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: #2a2a2a;
+}
+
+.project-detail-app-video-frame {
+  /* Hug the clip’s aspect ratio — avoids pillarboxing from width:100% + object-fit:contain */
+  width: fit-content;
+  max-width: 100%;
+  min-width: 0;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 3px solid #0a0a0a;
+  background: #111111;
+}
+
+.project-detail-app-video-el {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: min(62vh, 560px);
+  vertical-align: bottom;
+  /* Slight zoom trims outer bezel / letterboxing in the recording */
+  transform: scale(1.06);
+  transform-origin: center center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-detail-app-video-el {
+    transform: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .project-detail-app-video-el {
+    max-height: min(56vh, 480px);
+  }
+}
+
+.project-detail-section-subheader {
+  margin: 0 0 14px;
+  color: #3d5366;
+  font-weight: 600;
+}
+
+.project-detail-tools-block .project-detail-tools-label {
+  margin-bottom: 6px;
+}
+
+.project-detail-tools-block .project-detail-tools-values {
+  margin: 0;
+}
+
+.project-detail-tools-block + .project-detail-links-block {
+  margin-top: 14px;
+}
+
+.project-detail-links-block .project-detail-links-label {
+  margin-bottom: 6px;
+}
+
+.project-detail-links-block .project-detail-links {
+  margin-top: 0;
+}
+
+.project-detail-triptych-intro {
+  margin: 0 0 18px;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: #2a2a2a;
+  max-width: none;
+}
+
+.project-detail-triptych {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 28px;
+  align-items: stretch;
+}
+
+.project-detail-triptych-cell {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #e8e8e8;
+  background: #f5f5f5;
+  aspect-ratio: 3 / 4;
+  min-width: 0;
+  min-height: 0;
+}
+
+.project-detail-triptych-cell img,
+.project-detail-triptych-video {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 860px) {
+  .project-detail-triptych {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  /* Equal-width pair in row 1 (video can otherwise widen its column) */
+  .project-detail-triptych-cell:nth-child(1),
+  .project-detail-triptych-cell:nth-child(2) {
+    width: 100%;
+  }
+
+  .project-detail-triptych-cell {
+    aspect-ratio: 4 / 5;
+    max-height: min(52vh, 440px);
+  }
+
+  /* First row: left + center; second row: right image full width (often landscape) */
+  .project-detail-triptych-cell:nth-child(3) {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    width: 100%;
+    max-width: none;
+    aspect-ratio: 16 / 10;
+    max-height: min(50vh, 520px);
+  }
+}
+
+@media (max-width: 520px) {
+  .project-detail-triptych-cell {
+    max-height: min(46vh, 340px);
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  .project-detail-triptych-cell {
+    max-height: min(42vh, 300px);
+  }
+}
+
+.project-detail-media {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #e8e8e8;
+  margin-bottom: 28px;
+  background: #1a1a1a;
+  aspect-ratio: 16 / 10;
+  max-width: 100%;
+}
+
+.project-detail-media--contain {
+  background: #f0f0f0;
+}
+
+.project-detail-media img,
+.project-detail-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-detail-body .lead {
+  margin-top: 0;
+}
+
+/* Global .lead caps width at 760px; project intros should use the full article width. */
+.project-detail-intro .lead {
+  max-width: none;
+}
+
+/* Match gap between video intro and Duration (see .project-detail-videos-duration). */
+.project-detail-intro .lead + .meta,
+.project-detail-intro .lead + .project-detail-tools-block {
+  margin-top: 8px;
+}
+
+.detail-carousel {
+  margin-bottom: 28px;
+}
+
+.detail-carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+  border-radius: 14px;
+}
+
+.detail-carousel-track {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 10px;
+  /* Scroll motion is handled by Embla Carousel (respects reduced motion via JS duration). */
+}
+
+.detail-carousel-slide-cell {
+  flex: 0 0 var(--detail-carousel-slide-w, calc((100% - 20px) / 3));
+  width: var(--detail-carousel-slide-w, calc((100% - 20px) / 3));
+  height: var(--detail-carousel-slide-h, auto);
+  max-height: min(320px, 52vh);
+  min-height: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #1a1a1a;
+  border: 1px solid #e8e8e8;
+  box-sizing: border-box;
+}
+
+.detail-carousel-slide-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .detail-carousel-slide-cell {
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 100%;
+    max-height: min(260px, 48vh);
+  }
+}
+
+@media (max-width: 480px) {
+  .detail-carousel-slide-cell {
+    max-height: min(220px, 42vh);
+  }
+}
+
+@media (max-width: 360px) {
+  .detail-carousel-slide-cell {
+    max-height: min(200px, 40vh);
+  }
+}
+
+@media (max-width: 560px) {
+  .detail-carousel-slide-cell {
+    border-radius: 8px;
+  }
+}
+
+.detail-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.detail-carousel-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #c8c8c8;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.detail-carousel-dot:hover {
+  background: #888888;
+}
+
+.detail-carousel-dot:focus-visible {
+  outline: 2px solid #111111;
+  outline-offset: 2px;
+}
+
+.detail-carousel-dot--active {
+  background: #111111;
+  transform: scale(1.15);
+}
+
+.project-detail-videos-preamble {
+  margin-bottom: 20px;
+}
+
+.project-detail-videos-preamble .project-detail-videos-intro {
+  margin: 0;
+  max-width: none;
+}
+
+.project-detail-videos-duration {
+  margin: 12px 0 0;
+}
+
+.project-detail-video-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.project-detail-video-cell {
+  border: 1px solid #e8e8e8;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+
+.project-detail-video-cell--full {
+  grid-column: 1 / -1;
+}
+
+.project-detail-video-label {
+  margin: 0;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  background: #fcfcfc;
+  border-bottom: 1px solid #e8e8e8;
+  color: #111111;
+}
+
+.project-detail-video-wrap {
+  aspect-ratio: 16 / 10;
+  width: 100%;
+}
+
+.project-detail-video--pair {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 720px) {
+  .project-detail-video-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Shorter hero / detail videos on phones so pages don’t feel oversized */
+@media (max-width: 640px) {
+  .project-detail-media {
+    aspect-ratio: 16 / 9;
+    max-height: min(46vh, 380px);
+  }
+
+  .project-detail-video-wrap {
+    aspect-ratio: 16 / 9;
+    max-height: min(42vh, 340px);
+  }
+}
+
+@media (max-width: 480px) {
+  .project-detail-media {
+    max-height: min(40vh, 320px);
+    border-radius: 14px;
+  }
+
+  .project-detail-video-wrap {
+    max-height: min(38vh, 280px);
+  }
+
+  .project-detail-video-cell {
+    border-radius: 14px;
+  }
+}
+
+/* Project cards: slightly less vertical space on small screens */
+@media (max-width: 520px) {
+  .project-card-visual {
+    aspect-ratio: 16 / 11;
+  }
+}
+
 .meta {
   color: #5a5a5a;
   font-size: 0.92rem;
@@ -578,7 +1147,7 @@ p {
     padding: 36px 0;
   }
 
-  .project-card {
+  .project-card:not(.project-card--media) {
     padding: 16px;
   }
 
