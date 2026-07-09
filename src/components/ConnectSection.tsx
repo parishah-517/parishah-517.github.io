@@ -12,7 +12,7 @@ export function ConnectSection({ variant = "home" }: Props) {
       <p className="eyebrow">Contact</p>
       <h2 {...(headingId ? { id: headingId } : {})}>Let&apos;s connect</h2>
       <p className="lead small">
-        Open to new opportunities and collaborations across product and design.
+        Open to new opportunities and collaborations across product, design, and engineering.
       </p>
       <div className="hero-actions">
         <a href="mailto:shahpari@umich.edu">Email</a>
